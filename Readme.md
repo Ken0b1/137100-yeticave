@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Костя Бахтин](https://up.htmlacademy.ru/php/5/user/137100).
-* Наставник: `Неизвестно`.
+* Наставник: [Вячеслав Никитин] (https://htmlacademy.ru/profile/id218143).
 
 ---
 
