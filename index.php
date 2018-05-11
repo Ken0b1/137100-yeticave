@@ -118,6 +118,17 @@ $ad = [
             </li>
         </ul>
     </section>
+    <?php
+    $value = $item['cost'];
+    function format_cost($value) {
+        $num = ceil($value);
+        if ($num > 1000) {
+        $result = number_format($num, 0, ',', ' ');
+        }
+    return $result;
+    }
+    $price = format_cost($item['cost']) . ' &#8399';
+    ?>
     <section class="lots">
         <div class="lots__header">
             <h2>Открытые лоты</h2>
@@ -134,7 +145,7 @@ $ad = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$item['cost']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=format_cost($item['cost']); ?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
 
@@ -150,12 +161,7 @@ $ad = [
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            
-            
 			<?php while($index < count($categories)): ?>
-				
-			
-				
             <li class="nav__item">
                 <a href="all-lots.html"><?=$categories[$index];?></a>
             </li>
