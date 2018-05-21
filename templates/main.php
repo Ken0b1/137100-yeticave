@@ -54,9 +54,7 @@
                                 date_default_timezone_set('Europe/Moscow');
                                 $ts_midnight = strtotime('tomorrow');
                                 $secs_to_midnight = $ts_midnight - time();
-                                $hours = floor($secs_to_midnight / 3600);
-                                $minutes = floor(($secs_to_midnight % 3600) / 60);
-                                print("$hours часов(а) и $minutes минут");
+                                echo (gmstrftime("%H:%M", $secs_to_midnight));
                             ?>
                         </div>
                     </div>
