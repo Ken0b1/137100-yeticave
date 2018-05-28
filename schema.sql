@@ -6,24 +6,29 @@ USE YetiCave;
 
 CREATE TABLE category (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	name_cat VARCHAR(32)
+	name VARCHAR(32)
 );
 
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	creation_date DATETIME,
 	title VARCHAR(128),
-	description TEXT,
+	description FULLTEXT,
 	img VARCHAR(128),
-	start_price DECIMAL,
+	start_price float,
 	completion_date DATETIME,
-	step_rate INT
+	step_rate INT,
+    author_id INT, 
+    category_id INT,
+    winner_id INT
 );
 
 CREATE TABLE bet (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	data DATETIME,
-	price DECIMAL
+	price float,
+    user_id VARCHAR,
+    lot_id VARCHAR
 );
 
 CREATE TABLE users (
@@ -40,3 +45,8 @@ CREATE UNIQUE INDEX email ON users(email);
 
 CREATE INDEX title ON lot(title);
 CREATE INDEX description ON lot(description);
+ALTER TABLE lot ADD FOREIGN KEY (author_id) REFERENCES users(id);
+ALTER TABLE lot ADD FOREIGN KEY (category_id) REFERENCES category(id);
+ALTER TABLE lot ADD FOREIGN KEY (winner_id_lot) REFERENCES users(id);
+ALTER TABLE bet ADD FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE bet ADD FOREIGN KEY (lot_id) REFERENCES lot(id);
