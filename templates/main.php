@@ -50,7 +50,12 @@
                             <span class="lot__cost"><?=format_cost($item['cost']); ?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
-
+                            <?php
+                                date_default_timezone_set('Europe/Moscow');
+                                $ts_midnight = strtotime('tomorrow');
+                                $secs_to_midnight = $ts_midnight - time();
+                                echo (gmstrftime("%H:%M", $secs_to_midnight));
+                            ?>
                         </div>
                     </div>
                 </div>
