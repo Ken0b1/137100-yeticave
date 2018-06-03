@@ -3,7 +3,37 @@ $is_auth = (bool) rand(0, 1);
 $index = 0;
 $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
+
+$connect = mysqli_connect("localhost", "root", "", "YetiCave");
+
+if ($connect == fales) {
+    print("Ошибка подключеня: " . mysqli_connect_error());
+}
+else {
+    print("Соединение установлено");
+}
+
+$sql_lot = 'SELECT
+    lot.title,
+    lot.start_price,
+    lot.img,
+    category.name,
+    MAX(bet.price) price, 
+    COUNT(bet.id) count_bet
+FROM lot
+INNER JOIN category ON lot.category_id = category.id 
+LEFT JOIN bet ON bet.lot_id = lot.id
+GROUP BY lot.id
+ORDER BY lot.creation_date';
+$result = mysqli_query($connect, $sql_lot);
+
+$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+$sql_cat = 'SELECT name FROM category';
+$res = mysqli_query($connect, $sql_cat);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
